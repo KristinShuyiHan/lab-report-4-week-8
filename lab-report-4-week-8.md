@@ -49,8 +49,19 @@ java.lang.AssertionError: expected:<[`google.com, google.com, ucsd.edu]> but was
 ```
 
 
-Implementation of `MarkdwonParse.java` from other hroup also fails/passes the test:
-![Image](https://github.com/KristinShuyiHan/cse15l-lab-reports/blob/main/Screen%20Shot%202022-02-26%20at%205.10.42%20PM.png)
+Implementation of `MarkdwonParse.java` from other hroup also fails the test:
+```
+Time: 0.021
+There were 3 failures:
+1) testSnippet1(MarkdownParseTest)
+java.lang.AssertionError: expected:<[`google.com, google.com, ucsd.edu]> but was:<[url.com, `google.com, google.com, ucsd.edu]>
+        at org.junit.Assert.fail(Assert.java:89)
+        at org.junit.Assert.failNotEquals(Assert.java:835)
+        at org.junit.Assert.assertEquals(Assert.java:120)
+        at org.junit.Assert.assertEquals(Assert.java:146)
+        at MarkdownParseTest.testSnippet1(MarkdownParseTest.java:18)
+```
+
 
 **Do you think there is a small (<10 lines) code change that will make your program work for snippet 2 and all related cases that nest parentheses, brackets, and escaped brackets? If yes, describe the code change. If not, describe why it would be a more involved change.**
 
@@ -93,8 +104,16 @@ java.lang.AssertionError: expected:<[a.com, a.com(()), example.com]> but was:<[a
 
 ```
 
-Implementation of `MarkdwonParse.java` from other hroup also fails/passes the test:
-![Image](https://github.com/KristinShuyiHan/cse15l-lab-reports/blob/main/Screen%20Shot%202022-02-26%20at%205.10.42%20PM.png)
+Implementation of `MarkdwonParse.java` from other hroup also fails the test:
+```
+2) testSnippet2(MarkdownParseTest)
+java.lang.AssertionError: expected:<[a.com, a.com(()), example.com]> but was:<[a.com, a.com((, example.com]>
+        at org.junit.Assert.fail(Assert.java:89)
+        at org.junit.Assert.failNotEquals(Assert.java:835)
+        at org.junit.Assert.assertEquals(Assert.java:120)
+        at org.junit.Assert.assertEquals(Assert.java:146)
+        at MarkdownParseTest.testSnippet2(MarkdownParseTest.java:25)
+```
 
 **Do you think there is a small (<10 lines) code change that will make your program work for snippet 2 and all related cases that nest parentheses, brackets, and escaped brackets? If yes, describe the code change. If not, describe why it would be a more involved change.**
 
@@ -165,8 +184,32 @@ FAILURES!!!
 Tests run: 7,  Failures: 3
 ```
 
-Implementation of `MarkdwonParse.java` from other hroup also fails/passes the test:
-![Image](https://github.com/KristinShuyiHan/cse15l-lab-reports/blob/main/Screen%20Shot%202022-02-26%20at%205.10.42%20PM.png)
+Implementation of `MarkdwonParse.java` from other hroup also fails the test:
+```
+3) testSnippet3(MarkdownParseTest)
+java.lang.AssertionError: expected:<[https://ucsd-cse15l-w22.github.io/]> but was:<[
+    https://www.twitter.com
+, 
+    https://ucsd-cse15l-w22.github.io/
+, github.com
+
+And there's still some more text after that.
+
+[this link doesn't have a closing parenthesis for a while](https://cse.ucsd.edu/
+
+
+
+]>
+        at org.junit.Assert.fail(Assert.java:89)
+        at org.junit.Assert.failNotEquals(Assert.java:835)
+        at org.junit.Assert.assertEquals(Assert.java:120)
+        at org.junit.Assert.assertEquals(Assert.java:146)
+        at MarkdownParseTest.testSnippet3(MarkdownParseTest.java:32)
+
+FAILURES!!!
+Tests run: 3,  Failures: 3
+```
+
 
 **Do you think there is a small (<10 lines) code change that will make your program work for snippet 2 and all related cases that nest parentheses, brackets, and escaped brackets? If yes, describe the code change. If not, describe why it would be a more involved change.**
 
