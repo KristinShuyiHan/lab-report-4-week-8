@@ -35,7 +35,7 @@ Turing the snippet into a test case, and saved as `Snippet1.md`
         assertEquals(expected, MarkdownParse.getLinks(contents));
     }
 ```
-My implementation of `MarkdownParse.java` fails the test, picking up every link as a valid link:
+My implementation of `MarkdownParse.java` fails the test by picking up the invalid link and misses the last valid link:
 ```
 Time: 0.023
 There were 3 failures:
@@ -49,7 +49,7 @@ java.lang.AssertionError: expected:<[`google.com, google.com, ucsd.edu]> but was
 ```
 
 
-Implementation of `MarkdwonParse.java` from other hroup also fails the test:
+Implementation of `MarkdwonParse.java` from other hroup also fails the test by preceiving every link as valid link:
 ```
 Time: 0.021
 There were 3 failures:
@@ -92,7 +92,7 @@ Turing the snippet into a test case, and saved as `Snippet2.md`
         assertEquals(expected, MarkdownParse.getLinks(contents));
     }
 ```
-My implementation of `MarkdownParse.java` fails the test, picking up every link as a valid link:
+My implementation of `MarkdownParse.java` fails the test, pinking only the second link with normal ()[] format, and also fails to identify the right bracket of the url:
 ```
 2) testSnippet2(MarkdownParseTest)
 java.lang.AssertionError: expected:<[a.com, a.com(()), example.com]> but was:<[a.com((]>
@@ -104,7 +104,7 @@ java.lang.AssertionError: expected:<[a.com, a.com(()), example.com]> but was:<[a
 
 ```
 
-Implementation of `MarkdwonParse.java` from other hroup also fails the test:
+Implementation of `MarkdwonParse.java` from other hroup also fails the test by faling to identify a complete link in second link:
 ```
 2) testSnippet2(MarkdownParseTest)
 java.lang.AssertionError: expected:<[a.com, a.com(()), example.com]> but was:<[a.com, a.com((, example.com]>
@@ -160,7 +160,7 @@ Turing the snippet into a test case, and saved as `Snippet3.md`
         assertEquals(expected, MarkdownParse.getLinks(contents));
     }
 ```
-My implementation of `MarkdownParse.java` fails the test, picking up every link as a valid link:
+My implementation of `MarkdownParse.java` fails the test by falsely picking but both second and third link:
 ```
 3) testSnippet3(MarkdownParseTest)
 java.lang.AssertionError: expected:<[https://ucsd-cse15l-w22.github.io/]> but was:<[
@@ -184,7 +184,7 @@ FAILURES!!!
 Tests run: 7,  Failures: 3
 ```
 
-Implementation of `MarkdwonParse.java` from other hroup also fails the test:
+Implementation of `MarkdwonParse.java` from other hroup also fails the test by picking up all the links:
 ```
 3) testSnippet3(MarkdownParseTest)
 java.lang.AssertionError: expected:<[https://ucsd-cse15l-w22.github.io/]> but was:<[
