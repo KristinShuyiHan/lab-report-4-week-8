@@ -216,6 +216,6 @@ Tests run: 3,  Failures: 3
 
 
 **Do you think there is a small (<10 lines) code change that will make your program work for snippet 2 and all related cases that nest parentheses, brackets, and escaped brackets? If yes, describe the code change. If not, describe why it would be a more involved change.**
-No. Since links turn invalid when one or more empty lines are entered in a complete parenthesis or brackets, or the content inside a parentheiss are broken into more than one line or the closing braket and open parenthesis are not connected. The program has to check all the conditions and picks everything inside the complete bracket, which would probably take more than 10 lines of code.
+No. Since links turn invalid when one or more empty lines are entered in a complete parenthesis or brackets, or the content inside a parentheiss are broken into more than one line, or the closing braket and open parenthesis are seperated by `\n`. The program has to check all the conditions and picks everything inside the complete bracket, which would probably take more than 10 lines of code.
 
 
