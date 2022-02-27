@@ -35,7 +35,7 @@ Turing the snippet into a test case, and saved as `Snippet1.md`
         assertEquals(expected, MarkdownParse.getLinks(contents));
     }
 ```
-My implementation of `MarkdownParse.java` fails the test by picking up the invalid link and misses the last valid link:
+My implementation of `MarkdownParse.java` fails the test, picking up every link as a valid link:
 ```
 Time: 0.023
 There were 3 failures:
@@ -49,7 +49,7 @@ java.lang.AssertionError: expected:<[`google.com, google.com, ucsd.edu]> but was
 ```
 
 
-Implementation of `MarkdwonParse.java` from other hroup also fails the test by preceiving every link as valid link:
+Implementation of `MarkdwonParse.java` from other hroup also fails the test:
 ```
 Time: 0.021
 There were 3 failures:
@@ -64,6 +64,9 @@ java.lang.AssertionError: expected:<[`google.com, google.com, ucsd.edu]> but was
 
 
 **Do you think there is a small (<10 lines) code change that will make your program work for snippet 2 and all related cases that nest parentheses, brackets, and escaped brackets? If yes, describe the code change. If not, describe why it would be a more involved change.**
+
+Yes. We just need to make sure the backticks have to come in pairs inside the outtermost bracket. To do so, I can set a variable as the value of number of backticks among the content inside the outtermost bracket by setting a forloop to compare each character in the outtermost bracket with ```, if it is equal, increments the value. 
+
 
 ## Snippet 2:
 
@@ -92,7 +95,7 @@ Turing the snippet into a test case, and saved as `Snippet2.md`
         assertEquals(expected, MarkdownParse.getLinks(contents));
     }
 ```
-My implementation of `MarkdownParse.java` fails the test, pinking only the second link with normal ()[] format, and also fails to identify the right bracket of the url:
+My implementation of `MarkdownParse.java` fails the test, picking up every link as a valid link:
 ```
 2) testSnippet2(MarkdownParseTest)
 java.lang.AssertionError: expected:<[a.com, a.com(()), example.com]> but was:<[a.com((]>
@@ -104,7 +107,7 @@ java.lang.AssertionError: expected:<[a.com, a.com(()), example.com]> but was:<[a
 
 ```
 
-Implementation of `MarkdwonParse.java` from other hroup also fails the test by faling to identify a complete link in second link:
+Implementation of `MarkdwonParse.java` from other hroup also fails the test:
 ```
 2) testSnippet2(MarkdownParseTest)
 java.lang.AssertionError: expected:<[a.com, a.com(()), example.com]> but was:<[a.com, a.com((, example.com]>
@@ -116,6 +119,7 @@ java.lang.AssertionError: expected:<[a.com, a.com(()), example.com]> but was:<[a
 ```
 
 **Do you think there is a small (<10 lines) code change that will make your program work for snippet 2 and all related cases that nest parentheses, brackets, and escaped brackets? If yes, describe the code change. If not, describe why it would be a more involved change.**
+To do so, We have to check if there are nested brackets and nested parenthesis in the link area. To deal with nested brackets, the content insde the parenthesis in outtermost bracktes get pciked. For nested parenthesis, the content inside the outermost parenthesis gets picked. The algorhthm to achieve this process is quite complicated,might requires multple if else statements, thus required code more than ten lines.
 
 ## Snippet 3:
 
@@ -160,7 +164,7 @@ Turing the snippet into a test case, and saved as `Snippet3.md`
         assertEquals(expected, MarkdownParse.getLinks(contents));
     }
 ```
-My implementation of `MarkdownParse.java` fails the test by falsely picking but both second and third link:
+My implementation of `MarkdownParse.java` fails the test, picking up every link as a valid link:
 ```
 3) testSnippet3(MarkdownParseTest)
 java.lang.AssertionError: expected:<[https://ucsd-cse15l-w22.github.io/]> but was:<[
@@ -184,7 +188,7 @@ FAILURES!!!
 Tests run: 7,  Failures: 3
 ```
 
-Implementation of `MarkdwonParse.java` from other hroup also fails the test by picking up all the links:
+Implementation of `MarkdwonParse.java` from other hroup also fails the test:
 ```
 3) testSnippet3(MarkdownParseTest)
 java.lang.AssertionError: expected:<[https://ucsd-cse15l-w22.github.io/]> but was:<[
@@ -212,6 +216,6 @@ Tests run: 3,  Failures: 3
 
 
 **Do you think there is a small (<10 lines) code change that will make your program work for snippet 2 and all related cases that nest parentheses, brackets, and escaped brackets? If yes, describe the code change. If not, describe why it would be a more involved change.**
-
+No. Since links turn invalid when an empty newlines are entered in a complete parenthesis or brackets, or the content inside a parentheiss are broken into more than one line or the closing braket and open parenthesis are not connected. The program has to check all the conditions and picks everything inside the complete bracket, which would probably take more than 10 lines of code.
 
 
